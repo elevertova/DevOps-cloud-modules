@@ -1,5 +1,5 @@
 aws_region   = "us-west-2"
-project_name = "BME-Web-App"
+project_name = "FRHN-Web-App"
 environment  = "dev"
 vpc_cidr     = "10.10.0.0/16"
 public_subnets = {
@@ -13,12 +13,12 @@ private_subnets = {
 enable_nat_gateway               = true
 ami_id                           = null
 instance_type                    = "t3.micro"
-database_name                    = "BMEdevdb"
+database_name                    = "frhndevdb"
 database_username                = "admin"
 database_deletion_protection     = false
 database_skip_final_snapshot     = true
 database_backup_retention_period = 1
 domain_name                      = null
-notification_email               = "ogahsam@gmail.com"
+notification_email               = "elelev@gmail.com"
 monthly_budget                   = 500
-tags                             = { OwnerTeam = "BME-Cloudengineers" }
+tags                             = { OwnerTeam = "FRHN-Cloudengineers" }
