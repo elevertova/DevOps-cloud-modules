@@ -4,13 +4,13 @@
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::357938784192:oidc-provider/token.actions.githubusercontent.com"
+        "Federated": "arn:aws:iam::677123926354:oidc-provider/token.actions.githubusercontent.com"
       },
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringEquals": {
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
-          "token.actions.githubusercontent.com:sub": "repo:zicttraining/DevOps-cloud-training-:environment:dev"
+          "token.actions.githubusercontent.com:sub": "repo:elevertova@119884272/DevOps-cloud-modules@1333393529:environment:dev"
         }
       }
     }

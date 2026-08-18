@@ -1,5 +1,5 @@
-bucket         = "bme-uat-app-bucket3"
-key            = "teams/bme/uat/terraform.tfstate"
+bucket         = "frhn-uat-app-bucket"
+key            = "teams/elena/uat/terraform.tfstate"
 region         = "us-west-2"
-use_lockfile    = true
+use_lockfile   = true
 encrypt        = true

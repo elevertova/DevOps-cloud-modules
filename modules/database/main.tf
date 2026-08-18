@@ -10,6 +10,7 @@ resource "aws_db_instance" "this" {
   storage_type               = "gp3"
   engine                     = "mysql"
   engine_version             = var.engine_version
+  engine_lifecycle_support   = "open-source-rds-extended-support-disabled"      # Prevent enrollment in paid RDS Extended Support
   instance_class             = var.instance_class
   db_name                    = var.database_name
   username                   = var.database_username

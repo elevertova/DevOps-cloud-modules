@@ -7,7 +7,7 @@ variable "allocated_storage" {
 }
 variable "engine_version" {
   type    = string
-  default = "8.0"
+  default = "8.4"     # Use a currently supported MySQL major version to avoid Extended Support charges
 }
 variable "instance_class" {
   type    = string

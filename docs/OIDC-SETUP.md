@@ -38,10 +38,17 @@ Create it only once per AWS account. If it already exists, reuse it.
 Create one role for each environment or student AWS account. Use the trust
 policy in `oidc-trust-policy.json`, replacing its placeholders.
 
-For Dev, the required subject is:
+For repositories created before July 15, 2026, the required subject for Dev is:
 
 ```text
 repo:GITHUB_ORG/REPOSITORY_NAME:environment:dev
+```
+
+For repositories created on or after July 15, 2026, use the immutable OIDC
+subject format, which includes the GitHub owner ID and repository ID:
+
+```text
+repo:GITHUB_ORG@GITHUB_OWNER_ID/REPOSITORY_NAME@GITHUB_REPOSITORY_ID:environment:dev
 ```
 
 Use `environment:uat` and `environment:prod` for the other environments.

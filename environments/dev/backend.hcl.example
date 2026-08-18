@@ -1,5 +1,5 @@
-bucket         = "bme-dev-app-bucket2"
-key            = "teams/bme/dev/terraform.tfstate"
+bucket         = "frhn-dev-app-bucket"
+key            = "teams/elena/dev/terraform.tfstate"
 region         = "us-west-2"
-use_lockfile    = true
+use_lockfile   = true
 encrypt        = true
