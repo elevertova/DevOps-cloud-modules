@@ -47,7 +47,7 @@ target_cpu_utilization = 60
 
 log_retention_days = 30
 
-certificate_arn = null
+certificate_arn = "arn:aws:acm:us-west-2:330907589313:certificate/adc64ef0-db32-42e9-a861-e66ba504ba1d"
 domain_name     = "portal.mycloudlab.space"
 
 alb_ingress_cidrs = ["0.0.0.0/0"]
