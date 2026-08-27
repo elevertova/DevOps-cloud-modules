@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frhn-portal
+  namespace: frhn-prod
+  labels:
+    app.kubernetes.io/name: frhn-portal
+    app.kubernetes.io/part-of: frhn-portal
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: frhn-portal
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http

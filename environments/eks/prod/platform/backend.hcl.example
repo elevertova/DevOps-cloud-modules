@@ -1,0 +1,5 @@
+bucket       = "frhn-prod-app-bucket"
+key          = "teams/elena/prod/eks/platform/terraform.tfstate"
+region       = "us-west-2"
+use_lockfile = true
+encrypt      = true

@@ -10,6 +10,16 @@ variable "enable_nat_gateway" {
   type    = bool
   default = true
 }
+variable "public_subnet_tags" {
+  description = "Additional tags applied to every public subnet."
+  type        = map(string)
+  default     = {}
+}
+variable "private_subnet_tags" {
+  description = "Additional tags applied to every private subnet."
+  type        = map(string)
+  default     = {}
+}
 variable "tags" {
   type    = map(string)
   default = {}
