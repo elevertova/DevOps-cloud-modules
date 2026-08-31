@@ -22,5 +22,6 @@ The deployment supports:
 - rolling image update from `eks-v1` to `eks-v2`
 - browser access through a Kubernetes LoadBalancer Service
 
-Project 5 observability resources are intentionally excluded from this scope.
-Follow `cleanup-runbook.md` immediately after the live demonstration.
+The observability extension adds CloudWatch Container Insights, a dashboard for Pod metrics, a Pod-health alarm with SNS email notification, and CloudTrail evidence of EKS API activity.
+
+After validation and evidence capture, follow `cleanup-runbook.md` to remove temporary billable resources.

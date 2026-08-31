@@ -64,5 +64,12 @@ Check the AWS Console and CLI for:
 - EBS volumes
 - VPC, subnets, route tables, Internet Gateway, ENIs, and security groups
 
-Do not destroy the separate ECR Terraform root. Its repository is intentionally
-retained for the next EKS project.
+## 6. Remove automatic Container Insights log groups
+
+Container Insights can leave empty log groups after Terraform destroys the EKS
+platform. In the CloudWatch Console, open **Log groups**, search for
+`/aws/containerinsights/frhn-prod-eks`, and delete those project log groups after
+confirming the cluster has been removed.
+
+Do not destroy the separate ECR Terraform root. The ECR repository and its
+application images are intentionally retained for reuse.

@@ -3,8 +3,8 @@ project_name       = "FRHN-Portal"
 environment        = "prod"
 cluster_name       = "frhn-prod-eks"
 kubernetes_version = "1.35"
-
-vpc_cidr = "10.4.0.0/16"
+vpc_cidr           = "10.4.0.0/16"
+notification_email = "elelev@gmail.com"
 
 public_subnets = {
   a = {

@@ -133,3 +133,29 @@ resource "aws_eks_addon" "coredns" {
 
   depends_on = [aws_eks_node_group.this]
 }
+
+resource "aws_iam_role_policy_attachment" "cloudwatch_agent" {
+  role       = aws_iam_role.node.name
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+}
+
+resource "aws_eks_addon" "cloudwatch_observability" {
+  cluster_name = aws_eks_cluster.this.name
+  addon_name   = "amazon-cloudwatch-observability"
+
+  configuration_values = jsonencode({
+    otelContainerInsights = {
+      enabled = true
+    }
+  })
+
+  resolve_conflicts_on_create = "OVERWRITE"
+  resolve_conflicts_on_update = "PRESERVE"
+
+  depends_on = [
+    aws_eks_node_group.this,
+    aws_iam_role_policy_attachment.cloudwatch_agent
+  ]
+
+  tags = var.tags
+}

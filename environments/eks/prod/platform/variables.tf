@@ -76,3 +76,8 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "notification_email" {
+  description = "Email address that receives EKS pod-health alerts."
+  type        = string
+}
