@@ -11,6 +11,12 @@ on:
 
   workflow_dispatch:
     inputs:
+      environment:
+        description: Environment target
+        required: true
+        default: all
+        type: choice
+        options: [all, dev, uat, prod]
       action:
         description: Terraform action for Dev, UAT, and Production
         required: true
@@ -49,7 +55,7 @@ jobs:
 
   deploy-dev:
     name: ${{ inputs.action }} Development
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && (inputs.environment == 'all' || inputs.environment == 'dev')
     needs: validate
     runs-on: ubuntu-latest
     environment: dev
@@ -108,10 +114,14 @@ jobs:
 
   deploy-uat:
     name: ${{ inputs.action }} UAT
-    if: github.event_name == 'workflow_dispatch'
-    needs: deploy-dev
-    runs-on: ubuntu-latest
-    environment: uat
+  deploy-uat:
+    name: ${{ inputs.action }} UAT
+    if: always() &&
+      github.event_name == 'workflow_dispatch' &&
+      needs.validate.result == 'success' &&
+      (needs.deploy-dev.result == 'success' || needs.deploy-dev.result == 'skipped') &&
+      (inputs.environment == 'all' || inputs.environment == 'uat')
+    needs: [validate, deploy-dev]
 
     permissions:
       id-token: write
@@ -167,8 +177,13 @@ jobs:
 
   deploy-prod:
     name: ${{ inputs.action }} Production
-    if: github.event_name == 'workflow_dispatch'
-    needs: deploy-uat
+        name: ${{ inputs.action }} Production
+    if: always() &&
+      github.event_name == 'workflow_dispatch' &&
+      needs.validate.result == 'success' &&
+      (needs.deploy-uat.result == 'success' || needs.deploy-uat.result == 'skipped') &&
+      (inputs.environment == 'all' || inputs.environment == 'prod')
+    needs: [validate, deploy-uat]
     runs-on: ubuntu-latest
     environment: prod
 
