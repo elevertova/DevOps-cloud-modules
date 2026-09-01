@@ -114,14 +114,15 @@ jobs:
 
   deploy-uat:
     name: ${{ inputs.action }} UAT
-  deploy-uat:
-    name: ${{ inputs.action }} UAT
-    if: always() &&
+    if: >
+      always() &&
       github.event_name == 'workflow_dispatch' &&
       needs.validate.result == 'success' &&
       (needs.deploy-dev.result == 'success' || needs.deploy-dev.result == 'skipped') &&
       (inputs.environment == 'all' || inputs.environment == 'uat')
     needs: [validate, deploy-dev]
+    runs-on: ubuntu-latest
+    environment: uat
 
     permissions:
       id-token: write
@@ -177,8 +178,8 @@ jobs:
 
   deploy-prod:
     name: ${{ inputs.action }} Production
-        name: ${{ inputs.action }} Production
-    if: always() &&
+    if: >
+      always() &&
       github.event_name == 'workflow_dispatch' &&
       needs.validate.result == 'success' &&
       (needs.deploy-uat.result == 'success' || needs.deploy-uat.result == 'skipped') &&
